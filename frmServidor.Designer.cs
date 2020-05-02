@@ -1,6 +1,6 @@
 ﻿namespace SegundoOrdinario00830
 {
-    partial class Form1
+    partial class frmServidor
     {
         /// <summary>
         /// Required designer variable.
