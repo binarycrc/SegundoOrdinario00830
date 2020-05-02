@@ -74,5 +74,15 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cliente\Cliente.csproj">
+      <Project>{047e5934-a42c-43c1-a2ae-3efcf1d2f4be}</Project>
+      <Name>Cliente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libreria\Libreria.csproj">
+      <Project>{479f2b55-4e73-481d-94d9-0c3b5b1af544}</Project>
+      <Name>Libreria</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
