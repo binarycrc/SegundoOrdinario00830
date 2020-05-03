@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{719D93F2-D559-4599-BD0F-CEA0C592A93D}</ProjectGuid>
+    <ProjectGuid>{5DC8BDF2-335C-4B7D-A1FA-5B423B758461}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Main</RootNamespace>
     <AssemblyName>Main</AssemblyName>
@@ -83,7 +83,7 @@
       <Project>{479f2b55-4e73-481d-94d9-0c3b5b1af544}</Project>
       <Name>Libreria</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SegundoOrdinario00830\Servidor.csproj">
+    <ProjectReference Include="..\Servidor.csproj">
       <Project>{bda37a90-b197-45d7-8e65-e00b26bebb8e}</Project>
       <Name>Servidor</Name>
     </ProjectReference>

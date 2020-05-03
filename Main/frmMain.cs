@@ -1,5 +1,5 @@
 ﻿using Cliente;
-
+using SegundoOrdinario00830;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,6 @@ namespace Main
         {
             InitializeComponent();
         }
-
         /// <summary>
         /// Metodo para abrir una unica ventana de servidor 
         /// desde el form principal
@@ -37,13 +36,13 @@ namespace Main
                     //Application.OpenForms.OfType<frmServidor>().First().Close();
                     btnAbrirCliente.Enabled = true;
                 }
-                else 
+                else
                 {
                     ///sino abrimos un form de servidor nuevo
                     frmServidor frmservidor = new frmServidor();
                     frmservidor.StartPosition = FormStartPosition.Manual;
                     frmservidor.Location = new Point(
-                        0,0
+                        0, 0
                         );
                     frmservidor.Show();
                     btnAbrirCliente.Enabled = true;
@@ -89,7 +88,7 @@ namespace Main
         {
             try
             {
-               
+
                 Application.Exit();
             }
             catch (Exception)
@@ -107,8 +106,10 @@ namespace Main
         /// <param name="e"></param>
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
             Environment.Exit(0);
         }
+
+        
     }
 }
