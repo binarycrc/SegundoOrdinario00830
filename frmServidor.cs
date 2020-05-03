@@ -46,6 +46,7 @@ namespace SegundoOrdinario00830
                 subprocesoEscuchaClientes.Start();
 
                 servidorIniciado = true;
+                cbDsc_rol.SelectedIndex = cbDsc_rol.FindStringExact("ESTUDIANTE");
             }
             catch (ThreadAbortException) { }
             catch (Exception) { }
@@ -81,7 +82,6 @@ namespace SegundoOrdinario00830
             String accion;
             while (servidorIniciado)
             {
-
                 try
                 {
                     accion = lector.ReadString();
@@ -114,6 +114,188 @@ namespace SegundoOrdinario00830
                 //listClientesConectados.Invoke(modificarListBoxClientes, new object[] { lastMessage });
             }
             tcpClient.Close();
+        }
+
+        private void btnRegistrarAlumno_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Alumno alumno = new Alumno(
+                                txtId_alumno.Text,
+                                txtDsc_nombre.Text.Trim(),
+                                txtDsc_apellido1.Text.Trim(),
+                                txtDsc_apellido2.Text.Trim(),
+                                txtDsc_user_name.Text.Trim(),
+                                txtDsc_password.Text.Trim(),
+                                cbDsc_rol.SelectedItem.ToString().Trim()
+                            );
+                string respuesta = datalayer.RegistrarAlumno(alumno);
+
+                switch (respuesta)
+                {
+                    case "OK":
+                        MessageBox.Show("Alumno creado!");
+                        break;
+
+                    case "ExistenteAlumno":
+                        MessageBox.Show("El alumno con la identificacion " + txtId_alumno.Text + ", ya existe!");
+                        break;
+
+                    case "ExistenteUserName":
+                        MessageBox.Show("El alumno con el Usuario " + txtDsc_user_name.Text + ", ya existe!");
+                        break;
+
+                    default:
+                        MessageBox.Show(respuesta);
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void btnRegistrarCurso_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursos cursos = new Cursos(
+                    txtId_curso.Text.Trim(), txtDsc_curso.Text.Trim(),
+                    txtDsc_grado.Text.Trim(), txtCan_horas.Text.Trim()
+                    );
+                string respuesta = datalayer.RegistrarCursos(cursos);
+
+                switch (respuesta)
+                {
+                    case "OK":
+                        MessageBox.Show("Curso creado!");
+                        break;
+
+                    case "ExistenteCursos":
+                        MessageBox.Show("El curso con el número " + txtId_curso.Text + ", ya existe!");
+                        break;
+
+                    default:
+                        MessageBox.Show(respuesta);
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void btnRegistrarNota_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CursosAlumno cursosAlumno = new CursosAlumno(
+                    txtNotaId_curso.Text.Trim(),
+                    txtNotaId_alumno.Text.Trim(),
+                    txtNotaordinario1.Text.Trim(),
+                    txtNotaordinario2.Text.Trim(),
+                    txtNotaproyecto.Text.Trim()
+                    );
+
+                string respuesta = datalayer.RegistrarCursosAlumno(cursosAlumno);
+
+                switch (respuesta)
+                {
+                    case "OK":
+                        MessageBox.Show("Nota Ingresada!");
+                        break;
+
+                    case "ExistenteCursosAlumno":
+                        MessageBox.Show("La Nota para ese Alumno ya existe!");
+                        break;
+
+                    default:
+                        MessageBox.Show(respuesta);
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void btnConsultarNotas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                gvRegistroNotas.DataSource = datalayer.ConsultarCursosAlumno(txtNotaId_curso.Text.Trim(),txtNotaId_alumno.Text.Trim());
+                gvRegistroNotas.Update();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        private void btnValidarConsultarTodos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                gvValidarAlumnos.DataSource = datalayer.ConsultarAlumnos();
+                gvRegistroNotas.Update();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void btnValidarValidar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string selectedId_alumno;
+                if (gvValidarAlumnos.SelectedCells.Count > 0)
+                {
+                    int selectedrowindex = gvValidarAlumnos.SelectedCells[0].RowIndex;
+                    DataGridViewRow selectedRow = gvValidarAlumnos.Rows[selectedrowindex];
+                    selectedId_alumno = Convert.ToString(selectedRow.Cells["Id_alumno"].Value);
+
+                    datalayer.ValidarAlumno(selectedId_alumno, "ESTUDIANTE");
+                    btnValidarConsultarTodos_Click(sender, e);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void btnValidarDenegar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string selectedId_alumno;
+                if (gvValidarAlumnos.SelectedCells.Count > 0)
+                {
+                    int selectedrowindex = gvValidarAlumnos.SelectedCells[0].RowIndex;
+                    DataGridViewRow selectedRow = gvValidarAlumnos.Rows[selectedrowindex];
+                    selectedId_alumno = Convert.ToString(selectedRow.Cells["Id_alumno"].Value);
+
+                    datalayer.ValidarAlumno(selectedId_alumno, "DENEGADO");
+                    btnValidarConsultarTodos_Click(sender, e);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

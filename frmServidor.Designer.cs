@@ -56,8 +56,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtId_curso = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.gvRegistroNotas = new System.Windows.Forms.DataGridView();
+            this.btnConsultarNotas = new System.Windows.Forms.Button();
+            this.btnRegistrarNota = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.txtNotaproyecto = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -71,18 +73,17 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.btnValidarDenegar = new System.Windows.Forms.Button();
             this.btnValidarValidar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gvValidarAlumnos = new System.Windows.Forms.DataGridView();
             this.label17 = new System.Windows.Forms.Label();
             this.btnValidarConsultarTodos = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label18 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRegistroNotas)).BeginInit();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvValidarAlumnos)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -130,6 +131,7 @@
             this.btnRegistrarAlumno.TabIndex = 14;
             this.btnRegistrarAlumno.Text = "Registrar";
             this.btnRegistrarAlumno.UseVisualStyleBackColor = true;
+            this.btnRegistrarAlumno.Click += new System.EventHandler(this.btnRegistrarAlumno_Click);
             // 
             // label7
             // 
@@ -169,7 +171,12 @@
             "PENDIENTE",
             "ESTUDIANTE",
             "DENEGADO"});
+            this.cbDsc_rol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDsc_rol.FormattingEnabled = true;
+            this.cbDsc_rol.Items.AddRange(new object[] {
+            "ESTUDIANTE",
+            "PENDIENTE",
+            "DENEGADO"});
             this.cbDsc_rol.Location = new System.Drawing.Point(6, 186);
             this.cbDsc_rol.Name = "cbDsc_rol";
             this.cbDsc_rol.Size = new System.Drawing.Size(160, 21);
@@ -291,6 +298,7 @@
             this.btnRegistrarCurso.TabIndex = 21;
             this.btnRegistrarCurso.Text = "Registrar";
             this.btnRegistrarCurso.UseVisualStyleBackColor = true;
+            this.btnRegistrarCurso.Click += new System.EventHandler(this.btnRegistrarCurso_Click);
             // 
             // label8
             // 
@@ -343,9 +351,9 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Controls.Add(this.dataGridView2);
-            this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Controls.Add(this.button1);
+            this.tabPage3.Controls.Add(this.gvRegistroNotas);
+            this.tabPage3.Controls.Add(this.btnConsultarNotas);
+            this.tabPage3.Controls.Add(this.btnRegistrarNota);
             this.tabPage3.Controls.Add(this.label16);
             this.tabPage3.Controls.Add(this.txtNotaproyecto);
             this.tabPage3.Controls.Add(this.label12);
@@ -364,23 +372,45 @@
             this.tabPage3.Text = "Registro Notas";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // label18
             // 
-            this.button2.Location = new System.Drawing.Point(549, 54);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(157, 36);
-            this.button2.TabIndex = 26;
-            this.button2.Text = "Consultar Notas";
-            this.button2.UseVisualStyleBackColor = true;
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(6, 90);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(35, 13);
+            this.label18.TabIndex = 28;
+            this.label18.Text = "Notas";
             // 
-            // button1
+            // gvRegistroNotas
             // 
-            this.button1.Location = new System.Drawing.Point(549, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 36);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Registrar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.gvRegistroNotas.AllowUserToAddRows = false;
+            this.gvRegistroNotas.AllowUserToDeleteRows = false;
+            this.gvRegistroNotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvRegistroNotas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.gvRegistroNotas.Location = new System.Drawing.Point(6, 106);
+            this.gvRegistroNotas.Name = "gvRegistroNotas";
+            this.gvRegistroNotas.Size = new System.Drawing.Size(698, 148);
+            this.gvRegistroNotas.TabIndex = 27;
+            // 
+            // btnConsultarNotas
+            // 
+            this.btnConsultarNotas.Location = new System.Drawing.Point(549, 54);
+            this.btnConsultarNotas.Name = "btnConsultarNotas";
+            this.btnConsultarNotas.Size = new System.Drawing.Size(157, 36);
+            this.btnConsultarNotas.TabIndex = 26;
+            this.btnConsultarNotas.Text = "Consultar Notas";
+            this.btnConsultarNotas.UseVisualStyleBackColor = true;
+            this.btnConsultarNotas.Click += new System.EventHandler(this.btnConsultarNotas_Click);
+            // 
+            // btnRegistrarNota
+            // 
+            this.btnRegistrarNota.Location = new System.Drawing.Point(549, 12);
+            this.btnRegistrarNota.Name = "btnRegistrarNota";
+            this.btnRegistrarNota.Size = new System.Drawing.Size(157, 36);
+            this.btnRegistrarNota.TabIndex = 25;
+            this.btnRegistrarNota.Text = "Registrar";
+            this.btnRegistrarNota.UseVisualStyleBackColor = true;
+            this.btnRegistrarNota.Click += new System.EventHandler(this.btnRegistrarNota_Click);
             // 
             // label16
             // 
@@ -466,7 +496,7 @@
             // 
             this.tabPage4.Controls.Add(this.btnValidarDenegar);
             this.tabPage4.Controls.Add(this.btnValidarValidar);
-            this.tabPage4.Controls.Add(this.dataGridView1);
+            this.tabPage4.Controls.Add(this.gvValidarAlumnos);
             this.tabPage4.Controls.Add(this.label17);
             this.tabPage4.Controls.Add(this.btnValidarConsultarTodos);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -485,6 +515,7 @@
             this.btnValidarDenegar.TabIndex = 30;
             this.btnValidarDenegar.Text = "Denegar";
             this.btnValidarDenegar.UseVisualStyleBackColor = true;
+            this.btnValidarDenegar.Click += new System.EventHandler(this.btnValidarDenegar_Click);
             // 
             // btnValidarValidar
             // 
@@ -494,14 +525,20 @@
             this.btnValidarValidar.TabIndex = 29;
             this.btnValidarValidar.Text = "Validar";
             this.btnValidarValidar.UseVisualStyleBackColor = true;
+            this.btnValidarValidar.Click += new System.EventHandler(this.btnValidarValidar_Click);
             // 
-            // dataGridView1
+            // gvValidarAlumnos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 47);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(693, 150);
-            this.dataGridView1.TabIndex = 28;
+            this.gvValidarAlumnos.AllowUserToAddRows = false;
+            this.gvValidarAlumnos.AllowUserToDeleteRows = false;
+            this.gvValidarAlumnos.AllowUserToResizeRows = false;
+            this.gvValidarAlumnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvValidarAlumnos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.gvValidarAlumnos.Location = new System.Drawing.Point(9, 47);
+            this.gvValidarAlumnos.MultiSelect = false;
+            this.gvValidarAlumnos.Name = "gvValidarAlumnos";
+            this.gvValidarAlumnos.Size = new System.Drawing.Size(693, 150);
+            this.gvValidarAlumnos.TabIndex = 28;
             // 
             // label17
             // 
@@ -520,23 +557,7 @@
             this.btnValidarConsultarTodos.TabIndex = 26;
             this.btnValidarConsultarTodos.Text = "Consultar Todos";
             this.btnValidarConsultarTodos.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 106);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(698, 148);
-            this.dataGridView2.TabIndex = 27;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 90);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(35, 13);
-            this.label18.TabIndex = 28;
-            this.label18.Text = "Notas";
+            this.btnValidarConsultarTodos.Click += new System.EventHandler(this.btnValidarConsultarTodos_Click);
             // 
             // frmServidor
             // 
@@ -556,10 +577,10 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRegistroNotas)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvValidarAlumnos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -602,18 +623,19 @@
         private System.Windows.Forms.TextBox txtNotaordinario1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtNotaId_alumno;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnConsultarNotas;
+        private System.Windows.Forms.Button btnRegistrarNota;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtNotaproyecto;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gvValidarAlumnos;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnValidarConsultarTodos;
         private System.Windows.Forms.Button btnValidarDenegar;
         private System.Windows.Forms.Button btnValidarValidar;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView gvRegistroNotas;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
