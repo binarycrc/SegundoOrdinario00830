@@ -21,6 +21,16 @@ namespace Cliente
         public void CargaNotas(string Dsc_user_name, string Dsc_password) 
         {
             alumno = datalayer.GetAlumno(Dsc_user_name, Dsc_password);
+            try
+            {
+                gvNotasAlumno.DataSource = datalayer.ConsultarCursosAlumno("", alumno.Id_alumno);
+                gvNotasAlumno.Update();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
             //MessageBox.Show("adentro " + alumno.Dsc_nombre);
         }
 

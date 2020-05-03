@@ -30,15 +30,15 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gvNotasAlumno = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvNotasAlumno)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnSalir);
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.gvNotasAlumno);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(731, 264);
@@ -56,13 +56,17 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // dataGridView1
+            // gvNotasAlumno
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(710, 180);
-            this.dataGridView1.TabIndex = 0;
+            this.gvNotasAlumno.AllowUserToDeleteRows = false;
+            this.gvNotasAlumno.AllowUserToResizeColumns = false;
+            this.gvNotasAlumno.AllowUserToResizeRows = false;
+            this.gvNotasAlumno.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvNotasAlumno.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.gvNotasAlumno.Location = new System.Drawing.Point(6, 19);
+            this.gvNotasAlumno.Name = "gvNotasAlumno";
+            this.gvNotasAlumno.Size = new System.Drawing.Size(710, 180);
+            this.gvNotasAlumno.TabIndex = 0;
             // 
             // frmConsultarNotas
             // 
@@ -77,7 +81,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Cliente - Consulta Notas";
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvNotasAlumno)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -85,7 +89,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gvNotasAlumno;
         private System.Windows.Forms.Button btnSalir;
     }
 }

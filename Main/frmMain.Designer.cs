@@ -35,6 +35,7 @@
             // 
             // btnAbrirCliente
             // 
+            this.btnAbrirCliente.Enabled = false;
             this.btnAbrirCliente.Location = new System.Drawing.Point(22, 71);
             this.btnAbrirCliente.Name = "btnAbrirCliente";
             this.btnAbrirCliente.Size = new System.Drawing.Size(124, 32);

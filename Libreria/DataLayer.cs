@@ -125,7 +125,7 @@ namespace Libreria
             {
                 OpenData("query"); //abrimos la coneccion a la base de datos
                 commandData = new System.Data.SqlClient.SqlCommand("select * from Alumno with(nolock) " +
-                    "where Dsc_user_name = @Dsc_user_name and Dsc_password = @Dsc_password", sqlConnData);
+                    "where Dsc_rol = 'ESTUDIANTE' and Dsc_user_name = @Dsc_user_name and Dsc_password = @Dsc_password", sqlConnData);
                 commandData.CommandType = CommandType.Text;
                 //agregamos el parametro al query con el valor requerido
                 commandData.Parameters.Add("@Dsc_user_name", System.Data.SqlDbType.VarChar, 10);
@@ -487,24 +487,20 @@ namespace Libreria
             System.Data.DataSet ds = new System.Data.DataSet();
             DataTable dt = new DataTable();
             OpenData("query");
-            string sqlconsulta = "select a.Dsc_nombre as nombre, a.Dsc_apellido1 as apellido1, " +
-                "a.Dsc_apellido2 as apellido2, c.Dsc_curso as curso, ca.NotaOrdinario1 as NotaOrdinario1, " +
-                "ca.NotaOrdinario2 as NotaOrdinario2, ca.NotaProyecto as NotaProyecto " +
-                "from CursosAlumno ca with(nolock), Alumno a with(nolock), Cursos c with(nolock) " +
-                "where ca.Id_alumno = a.Id_alumno and ca.Id_curso = c.Id_curso ";
+            string sqlconsulta = " select a.Dsc_nombre as nombre, a.Dsc_apellido1 as apellido1, " +
+                " a.Dsc_apellido2 as apellido2, c.Dsc_curso as curso, ca.NotaOrdinario1 as NotaOrdinario1, " +
+                " ca.NotaOrdinario2 as NotaOrdinario2, ca.NotaProyecto as NotaProyecto " +
+                " from CursosAlumno ca with(nolock), Alumno a with(nolock), Cursos c with(nolock) " +
+                " where ca.Id_alumno = a.Id_alumno and ca.Id_curso = c.Id_curso ";
 
             
             if (!String.IsNullOrEmpty(Id_curso))
             { 
-                sqlconsulta = sqlconsulta + " and ca.Id_curso = @Id_curso ";
-                commandData.Parameters.Add("@Id_curso", System.Data.SqlDbType.VarChar, 10);
-                commandData.Parameters["@Id_curso"].Value = Id_curso;
+                sqlconsulta += " and ca.Id_curso = '" + Id_curso+"'";
             }
             if (!String.IsNullOrEmpty(Id_alumno)) 
             { 
-                sqlconsulta = sqlconsulta + " and ca.Id_alumno = @Id_alumno ";
-                commandData.Parameters.Add("@Id_alumno", System.Data.SqlDbType.VarChar, 10);
-                commandData.Parameters["@Id_alumno"].Value = Id_alumno;
+                sqlconsulta += " and ca.Id_alumno = '"+ Id_alumno+"'";
             }
 
 

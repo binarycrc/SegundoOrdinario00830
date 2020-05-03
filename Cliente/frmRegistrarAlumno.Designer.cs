@@ -131,6 +131,7 @@
             "PENDIENTE",
             "ESTUDIANTE",
             "DENEGADO"});
+            this.cbDsc_rol.Enabled = false;
             this.cbDsc_rol.FormattingEnabled = true;
             this.cbDsc_rol.Items.AddRange(new object[] {
             "PENDIENTE",

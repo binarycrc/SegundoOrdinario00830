@@ -32,6 +32,7 @@ namespace Cliente
                 IPEndPoint serverEndPoint = new IPEndPoint(ipServidor, intPort);
 
                 cliente.Connect(serverEndPoint);
+                cbDsc_rol.SelectedIndex = cbDsc_rol.FindStringExact("PENDIENTE");
             }
             catch (Exception)
             {
