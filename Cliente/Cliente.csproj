@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BDA37A90-B197-45D7-8E65-E00B26BEBB8E}</ProjectGuid>
+    <ProjectGuid>{047E5934-A42C-43C1-A2AE-3EFCF1D2F4BE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SegundoOrdinario00830</RootNamespace>
-    <AssemblyName>SegundoOrdinario00830</AssemblyName>
+    <RootNamespace>Cliente</RootNamespace>
+    <AssemblyName>Cliente</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -44,16 +44,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmServidor.cs">
+    <Compile Include="frmCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmServidor.Designer.cs">
-      <DependentUpon>frmServidor.cs</DependentUpon>
+    <Compile Include="frmCliente.Designer.cs">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConsultarNotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsultarNotas.Designer.cs">
+      <DependentUpon>frmConsultarNotas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegistrarAlumno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegistrarAlumno.Designer.cs">
+      <DependentUpon>frmRegistrarAlumno.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmServidor.resx">
-      <DependentUpon>frmServidor.cs</DependentUpon>
+    <EmbeddedResource Include="frmCliente.resx">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConsultarNotas.resx">
+      <DependentUpon>frmConsultarNotas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegistrarAlumno.resx">
+      <DependentUpon>frmRegistrarAlumno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -75,9 +93,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Libreria\Libreria.csproj">
+    <ProjectReference Include="..\Libreria\Libreria.csproj">
       <Project>{479f2b55-4e73-481d-94d9-0c3b5b1af544}</Project>
       <Name>Libreria</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servidor.csproj">
+      <Project>{bda37a90-b197-45d7-8e65-e00b26bebb8e}</Project>
+      <Name>Servidor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

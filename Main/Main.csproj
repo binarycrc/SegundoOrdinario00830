@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BDA37A90-B197-45D7-8E65-E00B26BEBB8E}</ProjectGuid>
+    <ProjectGuid>{719D93F2-D559-4599-BD0F-CEA0C592A93D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SegundoOrdinario00830</RootNamespace>
-    <AssemblyName>SegundoOrdinario00830</AssemblyName>
+    <RootNamespace>Main</RootNamespace>
+    <AssemblyName>Main</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -44,16 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmServidor.cs">
+    <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmServidor.Designer.cs">
-      <DependentUpon>frmServidor.cs</DependentUpon>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmServidor.resx">
-      <DependentUpon>frmServidor.cs</DependentUpon>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -75,9 +75,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Libreria\Libreria.csproj">
+    <ProjectReference Include="..\Cliente\Cliente.csproj">
+      <Project>{047e5934-a42c-43c1-a2ae-3efcf1d2f4be}</Project>
+      <Name>Cliente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libreria\Libreria.csproj">
       <Project>{479f2b55-4e73-481d-94d9-0c3b5b1af544}</Project>
       <Name>Libreria</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SegundoOrdinario00830\Servidor.csproj">
+      <Project>{bda37a90-b197-45d7-8e65-e00b26bebb8e}</Project>
+      <Name>Servidor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
